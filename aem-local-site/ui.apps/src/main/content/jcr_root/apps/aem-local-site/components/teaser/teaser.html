@@ -1,0 +1,40 @@
+<div>
+Teaser custom component : </br>
+Title : ${properties.pretitle} </br>
+Description : ${properties.description} </br>
+</div>
+
+
+<!-- AEM ClientLib template helper -->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.css @ categories='teaser.custom'}"/>
+     
+<!-- Instantiate the Model (Adapts via SlingHttpServletRequest) -->
+<!-- Pass current page explicitly as a request attribute to populate 'requestCurrentPage' -->
+<div data-sly-use.teaser="${'com.aem.geeks.core.models.Teaser' @ currentPage=currentPage}" 
+     class="cmp-teaser">
+
+    <div data-sly-test="${teaser.fileReference}" class="cmp-teaser__image">
+        <img src="${teaser.fileReference}" alt="${teaser.pretitle}" />
+    </div>
+    
+    <div class="cmp-teaser__content">
+        <p data-sly-test="${teaser.pretitle}" class="cmp-teaser__pretitle">
+            ${teaser.pretitle}
+        </p>
+
+        <!-- Current Page Title -->
+        <h2 class="cmp-teaser__title">
+            <a data-sly-unwrap="${!teaser.linkURL}" href="${teaser.linkURL}.html">
+                ${teaser.pageTitle}
+            </a>
+        </h2>
+
+        <!-- Description -->
+        <div data-sly-test="${teaser.description}" class="cmp-teaser__description">
+            ${teaser.description @ context='html'}
+        </div>
+        
+    </div>
+
+</div>
