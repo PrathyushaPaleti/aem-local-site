@@ -1,4 +1,4 @@
-package com.aem.geeks.core.models;
+package com.aem.local.site.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -59,7 +59,8 @@ public class Teaser {
 
     @ValueMapValue
     @Default(values="Adventure awaits! Explore the world with our curated travel experiences.")
-    protected String pretitle;
+    @Named("jcr:title")
+    protected String title;
 
     @ValueMapValue
     protected String description;
@@ -69,6 +70,18 @@ public class Teaser {
 
     @ValueMapValue(injectionStrategy=InjectionStrategy.OPTIONAL)
     protected String linkURL;
+
+    @ValueMapValue
+    protected String linkText;
+
+    @ValueMapValue
+    protected String linkType;
+
+    @ValueMapValue
+    protected String internalLinkID;
+
+    @ValueMapValue
+    protected String externalLink;
 
     @Self
     private SlingHttpServletRequest request;
@@ -119,8 +132,8 @@ public class Teaser {
         LOG.info("Teaser component message: {}", message);
     }
 
-    public String getPretitle() {
-        return pretitle;
+    public String getTitle() {
+        return title;
     }
 
     public String getPageTitle() {
@@ -137,6 +150,22 @@ public class Teaser {
 
     public String getLinkURL() {
         return linkURL;
+    }
+     
+    public String getLinkText() {
+        return linkText;
+    }
+
+    public String getLinkType() {
+        return linkType;
+    }
+
+    public String getExternalLink() {
+        return externalLink;
+    }
+
+    public String getInternalLinkID() {
+        return internalLinkID;
     }
 
 }

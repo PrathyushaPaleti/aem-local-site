@@ -1,40 +1,61 @@
-<div>
-Teaser custom component : </br>
-Title : ${properties.pretitle} </br>
-Description : ${properties.description} </br>
-</div>
-
-
 <!-- AEM ClientLib template helper -->
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
      data-sly-call="${clientlib.css @ categories='teaser.custom'}"/>
-     
-<!-- Instantiate the Model (Adapts via SlingHttpServletRequest) -->
-<!-- Pass current page explicitly as a request attribute to populate 'requestCurrentPage' -->
-<div data-sly-use.teaser="${'com.aem.geeks.core.models.Teaser' @ currentPage=currentPage}" 
-     class="cmp-teaser">
+<div data-sly-use.teaser="${'com.aem.local.site.core.models.Teaser' @ currentPage=currentPage}" 
+     class="cmp-container">
+<main class="container">
 
-    <div data-sly-test="${teaser.fileReference}" class="cmp-teaser__image">
-        <img src="${teaser.fileReference}" alt="${teaser.pretitle}" />
-    </div>
-    
-    <div class="cmp-teaser__content">
-        <p data-sly-test="${teaser.pretitle}" class="cmp-teaser__pretitle">
-            ${teaser.pretitle}
-        </p>
-
-        <!-- Current Page Title -->
-        <h2 class="cmp-teaser__title">
-            <a data-sly-unwrap="${!teaser.linkURL}" href="${teaser.linkURL}.html">
-                ${teaser.pageTitle}
-            </a>
-        </h2>
-
-        <!-- Description -->
-        <div data-sly-test="${teaser.description}" class="cmp-teaser__description">
-            ${teaser.description @ context='html'}
-        </div>
+	<!-- Teaser Banner -->
+	<section class="teaser-banner">
+		<img 
+			class="teaser-bg-image" 
+			src="${teaser.fileReference}" 
+			alt="Aerial shot of waves breaking on sandy beach"
+		/>
         
-    </div>
+		<div class="teaser-overlay"></div>
+		
+		<!-- Header Section -->
+		<header class="teaser-header">
+			<!-- Left: Logo -->
+			<div class="header-logo-container">
+				<a href="#" class="oneworld-logo">oneworld</a>
+			</div>
 
+			<!-- Middle: Nav Links -->
+			<nav class="header-nav">
+				<a href="#" class="nav-link">Explore</a>
+				<a href="#" class="nav-link">Book</a>
+				<a href="#" class="nav-link">Experience</a>
+				<a href="#" class="nav-link">Privilege Club</a>
+			</nav>
+
+			<!-- Right: Actions -->
+			<div class="header-actions">
+				<a href="#" class="btn-help">Help</a>
+				<button class="btn-search" aria-label="Search">
+					<svg class="search-icon" viewBox="0 0 24 24">
+						<circle cx="11" cy="11" r="8"></circle>
+						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+					</svg>
+				</button>
+			</div>
+		</header>
+
+		<!-- Main Banner Content -->
+		<div class="teaser-content">
+			<h1 data-sly-test="${teaser.title}" class="teaser-title">${teaser.title}</h1>
+            <sly data-sly-test="${teaser.linkType == 'internal'}">
+            	<a target="_self" href="${teaser.linkURL}.html?CID=${teaser.internalLinkID}" class="btn-explore">
+                <span>${teaser.linkText}</span></a>
+            </sly>
+			<sly data-sly-test="${teaser.linkType == 'external'}">
+            	<a target="_blank" href="${teaser.externalLink}" rel="noopener noreferrer" class="btn-explore">
+                <span>${teaser.linkText}</span></a>
+            </sly>
+		</div>
+
+	</section>
+
+</main>
 </div>
