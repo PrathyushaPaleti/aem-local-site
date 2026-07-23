@@ -1,8 +1,10 @@
 package com.aem.local.site.core.models;
 
+import com.aem.local.site.core.services.TeaserConfigService;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -44,7 +47,9 @@ public class Teaser {
 
     @ScriptVariable
     private Page currentPage;
-    
+
+    @OSGiService
+    private TeaserConfigService teaserConfigService;
 
     @RequestAttribute(name = "currentPage")
     private Page requestCurrentPage;
@@ -86,6 +91,9 @@ public class Teaser {
     @Self
     private SlingHttpServletRequest request;
 
+    private String backgroundImage;
+    private String promoUrl;
+
     @PostConstruct
     protected void init() {
 
@@ -121,8 +129,6 @@ public class Teaser {
             LOG.error("Error while getting current user: ", e);
         }
 
-
-
         message = "Teaser custom component!\n"
                 + "Resource type is: " + resourceType + "\n"
                 + "Current page is:  " + requestCurrentPage.getPath() + "\n"
@@ -130,6 +136,15 @@ public class Teaser {
                 + "Current resource path is: " + resourcePath + "\n";
 
         LOG.info("Teaser component message: {}", message);
+
+        if(StringUtils.isNotBlank(fileReference)) {
+            this.backgroundImage = fileReference;
+        } else {
+            this.backgroundImage = teaserConfigService.getFallbackBackgroundImage();
+        }
+
+        this.promoUrl = teaserConfigService.getPromoDestinationUrl();
+
     }
 
     public String getTitle() {
@@ -146,6 +161,10 @@ public class Teaser {
     
     public String getFileReference() {
         return fileReference;
+    }
+    
+    public String getBackgroundImage() {
+        return backgroundImage;
     }
 
     public String getLinkURL() {
@@ -166,6 +185,10 @@ public class Teaser {
 
     public String getInternalLinkID() {
         return internalLinkID;
+    }
+
+    public String getPromoUrl() {
+        return promoUrl;
     }
 
 }
