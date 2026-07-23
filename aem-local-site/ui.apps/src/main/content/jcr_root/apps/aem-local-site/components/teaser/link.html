@@ -1,0 +1,10 @@
+<sly data-sly-template.link="${@ teaser}">
+     <sly data-sly-test="${teaser.linkType == 'internal'}">
+         <a target="_self" href="${teaser.linkURL}.html?CID=${teaser.internalLinkID}" class="btn-explore">
+         <span>${teaser.linkText}</span></a>
+     </sly>
+     <sly data-sly-test="${teaser.linkType == 'external'}">
+         <a target="_blank" href="${teaser.externalLink}" rel="noopener noreferrer" class="btn-explore">
+         <span>${teaser.linkText}</span></a>
+     </sly>
+ </sly>
