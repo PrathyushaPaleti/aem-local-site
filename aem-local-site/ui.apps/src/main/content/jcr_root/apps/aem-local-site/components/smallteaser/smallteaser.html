@@ -1,0 +1,35 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+	data-sly-call="${clientlib.css @ categories='smallteaser.clientlib'}"
+	data-sly-use.smallteaser="${'com.aem.local.site.core.models.SmallTeaser' @ currentPage=currentPage}"/>
+    
+    <!-- Main Section Container -->
+    <section class="offers-section">
+        
+        <!-- Section Title -->
+        <h2 class="section-title">${smallteaser.pretitle}</h2>
+
+        <!-- Cards Grid wrapper -->
+        <div class="cards-grid" data-sly-list.slideItem="${smallteaser.teaseritems.listChildren}">
+
+            <!-- Card 1 -->
+            <a href="${slideitem.linkpath}.html" class="offer-card">
+                <div class="card-image-wrapper">
+                    <!-- High-quality matching placeholder image -->
+                    <img class="card-image" src="${slideItem.fileReference @ context='uri'}" alt="Slide image">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">${slideItem.title}</h3>
+                </div>
+                <div class="card-footer">
+                    <span class="action-text">${slideItem.linktext}</span>
+                    <span class="action-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 8 12">
+                            <polyline points="2 2 6 6 2 10"></polyline>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+
+    </section>
+

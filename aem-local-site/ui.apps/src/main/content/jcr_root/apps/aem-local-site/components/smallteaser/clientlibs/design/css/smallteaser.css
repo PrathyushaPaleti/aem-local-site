@@ -1,0 +1,155 @@
+/* CSS Reset & Core Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f5f9; /* Soft cool-gray background matching the image */
+            font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+            padding: 60px 8%; /* Generous margins on the sides */
+            color: #333333;
+        }
+
+        /* Section Container */
+        .offers-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section Title Style */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300; /* Beautiful thin weight */
+            color: #2c2c2c;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cards Grid Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+            gap: 24px; /* Spacious gap between the cards */
+        }
+
+        /* Individual Card Container */
+        .offer-card {
+            background-color: #ffffff;
+            border-radius: 16px; /* Smooth rounded corners matching the image */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Subtle, premium shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; /* Make entire card clickable */
+            color: inherit;
+        }
+
+        /* Card Hover Effects */
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Card Image Container */
+        .card-image-wrapper {
+            width: 100%;
+            height: 220px; /* Fixed aspect ratio for consistency */
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image matches proportions perfectly */
+            transition: transform 0.5s ease;
+        }
+
+        .offer-card:hover .card-image {
+            transform: scale(1.03); /* Subtle image zoom on hover */
+        }
+
+        /* Card Body (Title Area) */
+        .card-body {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 300; /* Keeps the thin, elegant style of headings */
+            line-height: 1.3;
+            color: #333333;
+        }
+
+        /* Card Footer (Action Bar) */
+        .card-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #f0f0f0; /* Thin separator line */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .action-text {
+            font-size: 0.95rem;
+            font-weight: 700; /* Bold link style */
+            color: #1a1a1a;
+        }
+
+        /* Clean CSS Arrow Indicator (>) */
+        .action-arrow {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .action-arrow svg {
+            width: 8px;
+            height: 12px;
+            fill: none;
+            stroke: #1a1a1a;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Shift arrow slightly to the right on card hover */
+        .offer-card:hover .action-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Responsive Design Rules */
+        @media (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+            }
+            body {
+                padding: 40px 5%;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .cards-grid {
+                grid-template-columns: 1fr; /* 1 stacked column on mobile devices */
+                gap: 20px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 24px;
+            }
+            .card-image-wrapper {
+                height: 200px;
+            }
+            .card-title {
+                font-size: 1.35rem;
+            }
+        }
