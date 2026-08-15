@@ -360,140 +360,56 @@ Bundle-DocURL:
               <pluginExecutions>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                                                                                                    
-                    
-                    
                     <groupId>org.apache.maven.plugins</groupId>
-                                                                                                    
-                    
-                    
                     <artifactId>maven-enforcer-plugin</artifactId>
-                                                                                                    
-                    
-                    
                     <versionRange>[1.0.0,)</versionRange>
-                                                                                                    
-                    
-                    
                     <goals>
-                                                                                                              
-                      
-                      
                       <goal>enforce</goal>
-                                                                                                          
-                    
-                    
                     </goals>
-                                                                                                
-                  
-                  
                   </pluginExecutionFilter>
                   <action>
-                                                                                                    
-                    
-                    
                     <ignore/>
-                                                                                                
-                  
-                  
                   </action>
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                                                                                                    
-                    
-                    
                     <groupId>
-                                            org.apache.maven.plugins
-                                        </groupId>
-                                                                                                    
-                    
-                    
+                        org.apache.maven.plugins
+                    </groupId>
                     <artifactId>
-                                            maven-dependency-plugin
-                                        </artifactId>
-                                                                                                    
-                    
-                    
+                        maven-dependency-plugin
+                    </artifactId>
                     <versionRange>
-                                            [2.2,)
-                                        </versionRange>
-                                                                                                    
-                    
-                    
+                          [2.2,)
+                      </versionRange>
                     <goals>
-                                                                                                              
-                      
-                      
                       <goal>copy-dependencies</goal>
-                                                                                                              
-                      
-                      
                       <goal>unpack</goal>
-                                                                                                          
-                    
-                    
                     </goals>
-                                                                                                
-                  
-                  
                   </pluginExecutionFilter>
                   <action>
-                                                                                                    
-                    
-                    
-                    <ignore/>
-                                                                                                
-                  
-                  
+                    <ignore/>  
                   </action>
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                                                                                                    
-                    
-                    
                     <groupId>
-                                            org.codehaus.mojo
-                                        </groupId>
-                                                                                                    
-                    
-                    
+                        org.codehaus.mojo
+                    </groupId>
                     <artifactId>
-                                            build-helper-maven-plugin
-                                        </artifactId>
-                                                                                                    
-                    
-                    
+                          build-helper-maven-plugin
+                    </artifactId>
                     <versionRange>
                                             [1.5,)
                                         </versionRange>
-                                                                                                    
-                    
-                    
                     <goals>
-                                                                                                              
-                      
-                      
                       <goal>
                                                 reserve-network-port
                                             </goal>
-                                                                                                          
-                    
-                    
                     </goals>
-                                                                                                
-                  
-                  
                   </pluginExecutionFilter>
                   <action>
-                                                                                                    
-                    
-                    
                     <ignore/>
-                                                                                                
-                  
-                  
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -531,13 +447,7 @@ Bundle-DocURL:
                 <execution>
                   <id>install-bundle</id>
                   <goals>
-                                                                                                    
-                    
-                    
                     <goal>install</goal>
-                                                                                                
-                  
-                  
                   </goals>
                 </execution>
               </executions>
@@ -563,13 +473,7 @@ Bundle-DocURL:
                 <execution>
                   <id>create-package</id>
                   <goals>
-                                                                                                    
-                    
-                    
                     <goal>package</goal>
-                                                                                                
-                  
-                  
                   </goals>
                 </execution>
               </executions>
@@ -581,22 +485,10 @@ Bundle-DocURL:
                 <execution>
                   <id>install-package</id>
                   <goals>
-                                                                                                    
-                    
-                    
                     <goal>install</goal>
-                                                                                                
-                  
-                  
                   </goals>
                   <configuration>
-                                                                                                    
-                    
-                    
                     <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
-                                                                                                
-                  
-                  
                   </configuration>
                 </execution>
               </executions>
@@ -622,13 +514,7 @@ Bundle-DocURL:
                 <execution>
                   <id>create-package</id>
                   <goals>
-                                                                                                    
-                    
-                    
                     <goal>package</goal>
-                                                                                                
-                  
-                  
                   </goals>
                 </execution>
               </executions>
@@ -640,22 +526,10 @@ Bundle-DocURL:
                 <execution>
                   <id>install-package-publish</id>
                   <goals>
-                                                                                                    
-                    
-                    
                     <goal>install</goal>
-                                                                                                
-                  
-                  
                   </goals>
                   <configuration>
-                                                                                                    
-                    
-                    
                     <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
-                                                                                                
-                  
-                  
                   </configuration>
                 </execution>
               </executions>
@@ -682,6 +556,11 @@ Bundle-DocURL:
         <groupId>com.adobe.cq</groupId>
         <artifactId>core.wcm.components.core</artifactId>
         <version>${core.wcm.components.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
+          <version>1.23.1</version>
       </dependency>
       <!-- Testing -->
       <dependency>
@@ -725,7 +604,7 @@ Bundle-DocURL:
       <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.4</version>
         <exclusions>
           <exclusion>
             <groupId>commons-collections</groupId>

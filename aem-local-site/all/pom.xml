@@ -65,16 +65,22 @@
                             <artifactId>aem-local-site.core</artifactId>
                             <target>/apps/aem-local-site-packages/application/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>com.aem.local-site</groupId>
-                            <artifactId>aem-local-site.ui.content</artifactId>
-                            <type>zip</type>
-                            <target>/apps/aem-local-site-packages/content/install</target>
-                        </embedded>
+                    <embedded>
+                        <groupId>com.aem.local-site</groupId>
+                        <artifactId>aem-local-site.ui.content</artifactId>
+                        <type>zip</type>
+                        <target>/apps/aem-local-site-packages/content/install</target>
+                    </embedded>
                         <embedded>
                             <groupId>com.aem.local-site</groupId>
                             <artifactId>aem-local-site.ui.config</artifactId>
                             <type>zip</type>
+                            <target>/apps/aem-local-site-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>org.jsoup</groupId>
+                            <artifactId>jsoup</artifactId>
+                            <type>jar</type>
                             <target>/apps/aem-local-site-packages/application/install</target>
                         </embedded>
                     </embeddeds>
@@ -196,6 +202,10 @@
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
-
+        <dependency>
+          <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
+          <version>1.23.1</version>
+      </dependency>
     </dependencies>
 </project>
