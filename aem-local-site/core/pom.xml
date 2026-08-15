@@ -96,9 +96,9 @@ Import-Package: javax.annotation;version=0.0.0,*
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-        </dependency>
+          <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
+      </dependency>
 
 
         <!-- Testing -->
