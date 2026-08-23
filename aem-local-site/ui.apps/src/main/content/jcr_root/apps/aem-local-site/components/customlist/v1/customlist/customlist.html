@@ -1,0 +1,16 @@
+<sly data-sly-use.customList="com.aem.local.site.core.models.CustomList"/>
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.css @ categories='customlist.clientlib'}"/>
+
+<div class="custom-list">
+    <h1 class="custom-list__title">${customList.title}</h1>
+
+    <div class="custom-list__grid">
+        <sly data-sly-list.linkItem="${customList.links.listChildren}">
+            <a class="custom-list__link"
+               href="${linkItem.linkpath}.html">
+                ${linkItem.linktext}
+            </a>
+        </sly>
+    </div>
+</div>
