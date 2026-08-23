@@ -1,9 +1,8 @@
-/*package com.aem.local.site.core.servlets;
+package com.aem.local.site.core.servlets;
 
-import org.apache.sling.api.servlets.HttpServlet;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
-import org.apache.sling.api.servlets.SlingHttpServletRequest;
-import org.apache.sling.api.servlets.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import javax.servlet.Servlet;
 import java.io.IOException;
@@ -21,4 +20,4 @@ public class TextBasedServlet extends SlingAllMethodsServlet {
         response.setContentType("text/plain");
         response.getWriter().write("Hello, World!");
     }
-}*/
+}
