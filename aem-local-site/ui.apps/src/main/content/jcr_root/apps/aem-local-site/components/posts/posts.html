@@ -1,0 +1,19 @@
+<div data-sly-use.model="com.aem.local.site.core.models.PostsListModel" class="posts-wrapper">
+    
+    <h2>Posts Component</h2>
+    
+    <!-- Loop through the parsed List of PostDto objects -->
+    <ul class="posts-list" data-sly-list.post="${model.postsList @ begin=0, end=5}">
+        <li class="post-item" style="margin-bottom: 20px;">
+            <h3>${post.id}. ${post.title}</h3>
+            <p>${post.body}</p>
+            <small style="color: #666;">Author User ID: ${post.userId}</small>
+        </li>
+    </ul>
+
+    <!-- Placeholder fallback UI in case the service failed or return empty -->
+    <div data-sly-test="${!model.postsList}" class="error-msg">
+        <p>Could not retrieve posts at this time. Please check backend OSGi logs.</p>
+    </div>
+    
+</div>
