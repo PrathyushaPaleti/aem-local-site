@@ -3,7 +3,6 @@ package com.aem.local.site.core.servlets;
 import java.io.IOException;
 
 import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -16,15 +15,19 @@ import org.osgi.service.component.annotations.Reference;
 
 import com.aem.local.site.core.services.DestinationRepoService;
 
-
+/*http://localhost:4504/content/aem-local-site/us/en/products/product-page/_jcr_content.destinationRoutes.json */
 @Component(service = { Servlet.class })
 @SlingServletResourceTypes(
-    resourceTypes = "aem-local-site/components/page",
+    resourceTypes = "aem-local-site/components/page",  // Target resource type for this servlet
     methods = HttpConstants.METHOD_GET,  // Limit to GET requests
     extensions = "json",  // Responds to '.json' file extensions
     selectors = "destinationRoutes"  // Optional selector: triggers on '.route.json' 
 )
 public class DestinationRepoServlet extends SlingSafeMethodsServlet {
+
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(DestinationRepoServlet.class);
+
+    private static final String COMPONENT_RELATIVE_PATH = "jcr:content/root/container/container/destinationcomponent";
 
     @Reference
     private transient DestinationRepoService destinationRepoService;
@@ -34,17 +37,20 @@ public class DestinationRepoServlet extends SlingSafeMethodsServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-         // request.getResource() points to the jcr:content node of the requested page
-        Resource pageContentResource = request.getResource();
-        
-        // Internally navigate to the destinationcomponent node path based on your container structure
-        Resource destinationComponent = pageContentResource.getChild("root/container/container/destinationcomponent");
-
-        // Verify that the node exists AND matches your required resourceType
-        if (destinationComponent == null || !destinationComponent.isResourceType("aem-local-site/components/destinationcomponent")) {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().write("{\"error\": \"Destination component not found or resource type does not match.\"}");
+        Resource pageResource = request.getResource();
+        if (pageResource == null) {
+            response.setStatus(SlingHttpServletResponse.SC_NOT_FOUND);
+            response.getWriter().write("{\"error\": \"Page resource not found.\"}");
             return;
+        }
+
+        // 3. Directly target the hardcoded component path relative to the page resource
+        Resource destinationCompResource = pageResource.getChild(COMPONENT_RELATIVE_PATH);
+
+        if (destinationCompResource != null) {
+            LOGGER.info("Successfully resolved destination component at: {}", destinationCompResource.getPath());
+        } else {
+            LOGGER.warn("Expected component node not found at relative path: '{}'", COMPONENT_RELATIVE_PATH);
         }
         
         try {

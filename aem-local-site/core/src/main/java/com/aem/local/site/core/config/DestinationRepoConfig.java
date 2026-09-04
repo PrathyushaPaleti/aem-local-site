@@ -15,10 +15,10 @@ public class DestinationRepoConfig {
         String remote_asset_url() default "http://localhost:4504/content/dam/aem-local-site/product-json/destinationRepo.json";
 
         @AttributeDefinition(name = "AEM Username")
-        String remote_username() default "";
+        String remote_username() default "admin";
 
         @AttributeDefinition(name = "AEM Password", type = AttributeType.PASSWORD)
-        String remote_password() default "";
+        String remote_password() default "admin";
 
         @AttributeDefinition(name = "Connection Timeout (Seconds)")
         int timeout_seconds() default 10;
