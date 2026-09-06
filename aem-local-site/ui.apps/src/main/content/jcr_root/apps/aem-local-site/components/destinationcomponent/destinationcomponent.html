@@ -1,1 +1,42 @@
-<p> Destination Component </p>
+<!-- /apps/aem-local-site/components/destinationcomponent/destinationcomponent.html -->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.all @ categories='destination.clientlib'}"/>
+
+<div class="places-wrapper">
+    <!-- Header Title -->
+    <h1 class="places-title">Places we think you'll love</h1>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <!-- Location Origin Selection -->
+        <div class="origin-group">
+            <span class="origin-label">From</span>
+            <div class="origin-input-wrapper">
+                <input type="text" id="originInput" value="Doha DOH" class="origin-input" readonly>
+                <span class="origin-edit-icon">✏️</span>
+            </div>
+        </div>
+
+        <!-- Filter Toggles Group -->
+        <div class="controls-group">
+            <div class="toggle-switch">
+                <button id="btnReturn" class="toggle-btn active" onclick="setTripType('RETURN')">Return</button>
+                <button id="btnOneWay" class="toggle-btn" onclick="setTripType('ONE_WAY')">One way</button>
+            </div>
+
+            <!-- Cabin Dropdown -->
+            <div class="select-wrapper">
+                <select id="cabinClassSelect" class="cabin-select" onchange="filterFares()">
+                    <option value="ECONOMY">Economy</option>
+                    <option value="PREMIUM">Premium / Business</option>
+                </select>
+                <span class="select-arrow">▼</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid Container -->
+    <div id="faresGrid" class="fares-grid">
+        <div class="loading-message">Retrieving flight fare directory from Doha...</div>
+    </div>
+</div>
