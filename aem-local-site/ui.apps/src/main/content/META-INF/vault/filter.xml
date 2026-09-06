@@ -3,4 +3,5 @@
     <filter root="/apps/aem-local-site/clientlibs"/>
     <filter root="/apps/aem-local-site/components"/>
     <filter root="/apps/aem-local-site/i18n"/>
+	<filter root="/content/dam/aem-local-site/product-assets"/>
 </workspaceFilter>
