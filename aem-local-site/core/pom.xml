@@ -43,8 +43,9 @@
                         </goals>
                         <configuration>
                             <bnd><![CDATA[
-Import-Package: javax.annotation;version=0.0.0,*
-                                ]]></bnd>
+            Import-Package: javax.annotation;version=0.0.0,*
+            Private-Package: com.adobe.pdfservices.*
+                            ]]></bnd>
                         </configuration>
                     </execution>
                 </executions>
@@ -96,9 +97,10 @@ Import-Package: javax.annotation;version=0.0.0,*
             <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.jsoup</groupId>
-          <artifactId>jsoup</artifactId>
-      </dependency>
+            <groupId>com.adobe.documentservices</groupId>
+            <artifactId>pdfservices-sdk</artifactId>
+            <version>4.3.0</version>
+        </dependency>
 
 
         <!-- Testing -->
