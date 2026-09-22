@@ -29,6 +29,51 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-pdfservices-sdk</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.adobe.documentservices</groupId>
+                                    <artifactId>pdfservices-sdk</artifactId>
+                                    <version>4.3.0</version>
+                                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                    <excludes>META-INF/MANIFEST.MF</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.jodah</groupId>
+                                    <artifactId>failsafe</artifactId>
+                                    <version>2.4.4</version>
+                                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                    <excludes>META-INF/MANIFEST.MF</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.httpcomponents</groupId>
+                                    <artifactId>httpclient</artifactId>
+                                    <version>4.5.14</version>
+                                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                    <excludes>META-INF/MANIFEST.MF</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.httpcomponents</groupId>
+                                    <artifactId>httpcore</artifactId>
+                                    <version>4.4.16</version>
+                                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                    <excludes>META-INF/MANIFEST.MF</excludes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>sling-maven-plugin</artifactId>
             </plugin>
@@ -43,8 +88,8 @@
                         </goals>
                         <configuration>
                             <bnd><![CDATA[
-            Import-Package: javax.annotation;version=0.0.0,*
-            Private-Package: com.adobe.pdfservices.*
+            Import-Package: javax.annotation;version=0.0.0,!com.adobe.pdfservices.operation.*,!net.jodah.failsafe.*,!org.apache.http.*,!net.spy.memcached.*,!net.sf.ehcache.*,*
+            Private-Package: com.adobe.pdfservices.*,net.jodah.failsafe.*,org.apache.http.*
                             ]]></bnd>
                         </configuration>
                     </execution>
