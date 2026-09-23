@@ -1,5 +1,5 @@
 {
     "user.mapping": [
-        "com.aem.local-site.core:pdf-service=pdf-service"
+        "aem-local-site.core:pdf-service=pdf-service"
     ]
 }
