@@ -14,9 +14,15 @@ import com.adobe.pdfservices.operation.pdfjobs.jobs.HTMLToPDFJob;
 import com.adobe.pdfservices.operation.pdfjobs.params.htmltopdf.HTMLToPDFParams;
 import com.adobe.pdfservices.operation.pdfjobs.params.htmltopdf.PageLayout;
 import com.adobe.pdfservices.operation.pdfjobs.result.HTMLToPDFResult;
+
 import com.day.cq.dam.api.AssetManager;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -36,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
 
@@ -43,18 +50,11 @@ import java.util.Map;
 @Designate(ocd = AdobePdfService.Config.class)
 public class AdobePdfService {
 
-    private static final Logger LOG =
-            LoggerFactory.getLogger(AdobePdfService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AdobePdfService.class);
 
+    private static final String MFS_COOKIES = "pst_user_lang_loc_role=en-us|investment-professional";
     /**
-     * ZIP file must be placed here:
-     *
-     * src/main/resources/createHtmlToPdfInput.zip
-     */
-    private static final String HTML_ZIP_RESOURCE = "/createHtmlToPdfInput.zip";
-
-    /**
-     * DAM destination.
+     * DAM destination folder.
      */
     private static final String DAM_FOLDER_PATH = "/content/dam/pdf-folder";
 
@@ -69,22 +69,14 @@ public class AdobePdfService {
     private String clientId;
     private String clientSecret;
 
-    @ObjectClassDefinition(
-            name = "Adobe PDF Services Configuration",
-            description = "Adobe PDF Services credentials"
-    )
+    @ObjectClassDefinition(name = "Adobe PDF Services Configuration", description = "Adobe PDF Services credentials")
     public @interface Config {
 
-        @AttributeDefinition(
-                name = "Client ID",
-                description = "Adobe PDF Services Client ID"
-        )
+        @AttributeDefinition(name = "Client ID", description = "Adobe PDF Services Client ID")
         String clientId() default "";
 
-        @AttributeDefinition(
-                name = "Client Secret",
-                description = "Adobe PDF Services Client Secret",
-                type = AttributeType.PASSWORD
+        @AttributeDefinition(name = "Client Secret", description = "Adobe PDF Services Client Secret",
+            type = AttributeType.PASSWORD
         )
         String clientSecret() default "";
     }
@@ -99,123 +91,104 @@ public class AdobePdfService {
     }
 
     /**
-     * Reads the HTML ZIP from src/main/resources,
-     * converts it to PDF using Adobe PDF Services,
-     * and saves the generated PDF to DAM.
+     * Converts an HTML URL to PDF using Adobe PDF Services
+     * and saves the generated PDF to AEM DAM.
      *
-     * Example:
-     *
-     * convertHtmlZipToPdf("my-page.pdf");
-     *
-     * Result:
-     *
-     * /content/dam/product-dam/my-page.pdf
+     * @param htmlUrl HTML page URL
+     * @param pdfFileName PDF file name
+     * @return DAM path of the generated PDF
      */
-    public String convertHtmlZipToPdf(String pdfFileName)
-            throws Exception {
+    public String convertHtmlUrlToPdf(String htmlUrl, String pdfFileName) throws Exception {
 
-        LOG.info("Starting HTML to PDF conversion. Resource={}, PDF={}",HTML_ZIP_RESOURCE,pdfFileName);
+        String html = fetchHtmlWithCookies(htmlUrl, MFS_COOKIES); // Fetch HTML with cookies
 
+        LOG.info("Starting HTML URL to PDF conversion. URL={}, PDF={}",htmlUrl, html.length());
         /*
-         * 1. Get ZIP from src/main/resources
+         * 1. Generate PDF from HTML URL using Adobe PDF Services
          */
-        byte[] pdfBytes;
-
-        try (InputStream htmlZipInputStream = getClass().getResourceAsStream(HTML_ZIP_RESOURCE)) {
-
-            if (htmlZipInputStream == null) {
-                throw new IllegalStateException("HTML ZIP not found on classpath: "+ HTML_ZIP_RESOURCE);
-            }
-
-            /*
-             * 2. Send ZIP to Adobe and get PDF bytes
-             */
-            pdfBytes = generatePdf(htmlZipInputStream);
-        }
-
-        /*
-         * 3. Save PDF to DAM
-         */
+        //byte[] pdfBytes = generatePdfFromUrl(html); // option 2
+        byte[] pdfBytes = generatePdfFromUrl(htmlUrl);
         return savePdfToDam(pdfFileName, pdfBytes);
     }
 
     /**
-     * Converts HTML ZIP to PDF using Adobe PDF Services.
+     * Converts HTML URL to PDF using Adobe PDF Services.
+     *
+     * Adobe supports creating HTMLToPDFJob directly from
+     * an HTML URL.
      */
-    private byte[] generatePdf(InputStream htmlZipInputStream) throws Exception {
+    private byte[] generatePdfFromUrl(String html) throws Exception {
 
         try {
 
-            /*
-             * Create Adobe credentials
-             */
             Credentials credentials = new ServicePrincipalCredentials(clientId, clientSecret);
-
+            PDFServices pdfServices = new PDFServices(credentials);
             /*
-             * Create Adobe PDF Services client
-             */
-            PDFServices pdfServices =new PDFServices(credentials);
-
-            /*
-             * Upload ZIP to Adobe.
-             *
-             * The ZIP must contain index.html.
-             */
-            Asset inputAsset = pdfServices.upload(htmlZipInputStream, PDFServicesMediaType.ZIP.getMediaType());
-
-            /*
-             * HTML -> PDF parameters
-             */
+             * HTML to PDF parameters.
+            */
             HTMLToPDFParams params = getHtmlToPdfParams();
-
-            /*
-             * Create HTML -> PDF job
-             */
-            HTMLToPDFJob job = new HTMLToPDFJob(inputAsset).setParams(params);
-
-            /*
-             * Submit job
-             */
+            /* Create HTML -> PDF job directly from URL */
+            HTMLToPDFJob job = new HTMLToPDFJob(html).setParams(params);
             String location = pdfServices.submit(job);
 
             LOG.info("Adobe PDF job submitted. Location={}",location);
+            PDFServicesResponse<HTMLToPDFResult> response = pdfServices.getJobResult(location,HTMLToPDFResult.class);
 
-            /*
-             * Get result
-             */
-            PDFServicesResponse<HTMLToPDFResult> response = pdfServices.getJobResult(location, HTMLToPDFResult.class);
-
-            /*
-             * Get generated PDF asset
-             */
             Asset resultAsset = response.getResult().getAsset();
-
-            /*
-             * Download generated PDF
-             */
             StreamAsset resultStreamAsset = pdfServices.getContent(resultAsset);
+            /* Convert Adobe response stream to byte[] */
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            try (InputStream pdfInputStream = resultStreamAsset.getInputStream()) {
+                IOUtils.copy(pdfInputStream,output);
+            }
 
-            /*
-             * Convert stream to byte[]
-             */
+            LOG.info("PDF generated successfully. Size={} bytes", output.size());
+            return output.toByteArray();
+
+        } catch (ServiceApiException | ServiceUsageException | SDKException e) {
+            LOG.error("Adobe PDF generation failed", e);
+            throw new Exception("Adobe PDF generation failed", e);
+        }
+    }
+
+    /*private byte[] generatePdfFromHtml(String html) throws Exception {
+
+        Credentials credentials = new ServicePrincipalCredentials(clientId, clientSecret);
+
+        PDFServices pdfServices = new PDFServices(credentials);
+
+        byte[] htmlBytes = html.getBytes(StandardCharsets.UTF_8);
+
+        try (InputStream inputStream = new ByteArrayInputStream(htmlBytes)) {
+
+            // Upload the HTML content to Adobe
+            Asset htmlAsset = pdfServices.upload(inputStream, PDFServicesMediaType.HTML.getMediaType());
+
+            HTMLToPDFParams params = getHtmlToPdfParams();
+
+            // IMPORTANT: use Asset, NOT URL
+            HTMLToPDFJob job = new HTMLToPDFJob(htmlAsset).setParams(params);
+
+            String location = pdfServices.submit(job);
+
+            LOG.info("Adobe PDF job submitted. Location={}", location);
+
+            PDFServicesResponse<HTMLToPDFResult> response = pdfServices.getJobResult(location,HTMLToPDFResult.class);
+
+            Asset resultAsset = response.getResult().getAsset();
+            StreamAsset resultStreamAsset = pdfServices.getContent(resultAsset);
             ByteArrayOutputStream output = new ByteArrayOutputStream();
 
             try (InputStream pdfInputStream = resultStreamAsset.getInputStream()) {
 
-                IOUtils.copy(pdfInputStream,output);
+                IOUtils.copy(pdfInputStream, output);
             }
 
-            LOG.info( "PDF generated successfully. Size={} bytes", output.size());
+            LOG.info("PDF generated successfully. Size={} bytes", output.size());
 
             return output.toByteArray();
-
-        } catch (ServiceApiException | ServiceUsageException | SDKException e) {
-
-            LOG.error("Adobe PDF generation failed", e);
-
-            throw new Exception( "Adobe PDF generation failed", e);
         }
-    }
+    }*/
 
     /**
      * Adobe HTML-to-PDF configuration.
@@ -223,47 +196,55 @@ public class AdobePdfService {
     private HTMLToPDFParams getHtmlToPdfParams() {
 
         PageLayout pageLayout = new PageLayout();
+        pageLayout.setPageSize( 7, 11.5);
 
-        /*
-         * Width = 8 inches
-         * Height = 11.5 inches
-         */
-        pageLayout.setPageSize(8, 11.5);
-
-        return new HTMLToPDFParams.Builder().includeHeaderFooter(false).withPageLayout(pageLayout).build();
+        return new HTMLToPDFParams.Builder()
+                .includeHeaderFooter(false)
+                .withPageLayout(pageLayout)
+                .build();
     }
 
     /**
      * Saves generated PDF to AEM DAM.
      */
-    private String savePdfToDam(String pdfFileName, byte[] pdfBytes) throws LoginException {
+    private String savePdfToDam(String pdfFileName,byte[] pdfBytes) throws LoginException {
 
-        if (!pdfFileName.endsWith(".pdf")) {
+        if (!pdfFileName.toLowerCase().endsWith(".pdf")) {
             pdfFileName += ".pdf";
         }
 
-        String assetPath =
-                DAM_FOLDER_PATH + "/" + pdfFileName;
-
+        String assetPath = DAM_FOLDER_PATH + "/" + pdfFileName;
         Map<String, Object> authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, SERVICE_USER);
 
         try (ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(authInfo)) {
 
             AssetManager assetManager = resourceResolver.adaptTo(AssetManager.class);
-
             if (assetManager == null) {
-                throw new IllegalStateException(
-                        "Unable to obtain AssetManager"
-                );
+                throw new IllegalStateException("Unable to obtain AssetManager");
             }
-
             /*
              * Create/update PDF asset.
              */
             assetManager.createAsset(assetPath, new ByteArrayInputStream(pdfBytes),"application/pdf",true);
-
             LOG.info("PDF successfully saved to DAM: {}", assetPath);
             return assetPath;
+        }
+    }
+
+    private String fetchHtmlWithCookies(String htmlUrl, String cookie) throws Exception {
+
+        HttpGet request = new HttpGet(htmlUrl);
+        request.setHeader("Cookie", cookie);
+        try (CloseableHttpClient client = HttpClients.createDefault();
+            CloseableHttpResponse response = client.execute(request)) {
+
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if (statusCode != 200) {
+                throw new IllegalStateException("Failed to fetch HTML. HTTP status: " + statusCode);
+            }
+
+            return EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
         }
     }
 }

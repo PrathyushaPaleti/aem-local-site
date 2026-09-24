@@ -4,12 +4,13 @@ import com.aem.local.site.core.services.AdobePdfService;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-
-import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import java.io.IOException;
@@ -17,53 +18,60 @@ import java.io.IOException;
 @Component(
         service = Servlet.class,
         property = {
-            "sling.servlet.paths=/bin/mfs/generate-pdf",
-            "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-            "sling.servlet.methods=" + HttpConstants.METHOD_POST
+                "sling.servlet.paths=/bin/mfs/generate-pdf",
+                "sling.servlet.methods=GET",
+                "sling.servlet.methods=POST"
         }
 )
 public class AdobePdfServlet extends SlingAllMethodsServlet {
+
+     private static final Logger LOG = LoggerFactory.getLogger(AdobePdfServlet.class);
 
     @Reference
     private AdobePdfService adobePdfService;
 
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
-        response.setStatus(SlingHttpServletResponse.SC_OK);
-        response.setContentType("text/plain");
-        response.setHeader("Cache-Control", "no-store");
-        response.getWriter().write("PDF generation endpoint is available. Send a POST request to generate a PDF.");
-    }
-
-    @Override
-    protected void doPost(SlingHttpServletRequest request,SlingHttpServletResponse response)throws IOException {
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
 
         try {
+            String htmlUrl = request.getParameter("url");
 
+            LOG.info("HTML URL received: {}", htmlUrl);
+
+            if (htmlUrl == null || htmlUrl.trim().isEmpty()) {
+                response.setStatus(SlingHttpServletResponse.SC_BAD_REQUEST);
+                response.setContentType("text/plain");
+                response.getWriter().write("Missing required parameter: url");
+                return;
+            }
+            /*
+             * Get PDF file name.
+             */
             String fileName = request.getParameter("fileName");
 
             if (fileName == null || fileName.trim().isEmpty()) {
-                fileName = "generated-page.pdf";
+                response.setStatus(SlingHttpServletResponse.SC_BAD_REQUEST);
+                response.setContentType("text/plain");
+                response.getWriter().write("Missing required parameter: fileName");
+                return;
             }
 
-            if (!fileName.endsWith(".pdf")) {
+            if (!fileName.toLowerCase().endsWith(".pdf")) {
                 fileName += ".pdf";
             }
 
-            String pdfPath = adobePdfService.convertHtmlZipToPdf(fileName);
+            /*
+             * Generate PDF and save to DAM.
+             */
+            String pdfPath = adobePdfService.convertHtmlUrlToPdf(htmlUrl, fileName);
 
             response.setStatus(SlingHttpServletResponse.SC_OK);
-
             response.setContentType("text/plain");
-
-            response.getWriter().write("PDF generated successfully:\n"+ pdfPath);
+            response.getWriter().write("PDF generated successfully:\n" + pdfPath);
 
         } catch (Exception e) {
-
             response.setStatus(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-
             response.setContentType("text/plain");
-
             response.getWriter().write("PDF generation failed: " + e.getMessage());
         }
     }
