@@ -1,0 +1,315 @@
+{
+  "originTitles": {
+    "DOH": "Doha"
+  },
+  "destnRepoData": {
+    "DOH": [
+      "{'destinationIata':'CMB', 'destinationTitle':'Colombo', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/sri-lanka/colombo/h1-colombo-primary.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-colombo.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/sri-lanka/colombo/h2-colombo-primary.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/sri-lanka/colombo/h3-colombo.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/sri-lanka/colombo/s-colombo-primary.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'AMD', 'destinationTitle':'Ahmedabad', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/india/ahmedabad/h1-ahmedabad-city-primary.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-ahmedabad.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/india/ahmedabad/h2-ahmedabad-city-primary.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/india/ahmedabad/h3-ahmedabad-city-primary.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/india/ahmedabad/s-ahmedabad-culture.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'CDG', 'destinationTitle':'Paris', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/france/paris/h1-paris.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-paris.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/france/paris/h2-paris.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/france/paris/h3-paris.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/france/paris-/s-paris.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'MAN', 'destinationTitle':'Manchester ', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/united-kingdom/manchester/h1-manchester-city-primary.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-manchester.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/united-kingdom/manchester/h2-manchester-city-primary.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/united-kingdom/manchester-/h3-manchester-city-primary.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/united-kingom/manchester/s-manchester-city2.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'ADD', 'destinationTitle':'Addis Ababa', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/ethiopia/addis-ababa/h1-addisabab-outdoor.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-addis-ababa.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/ethiopia-/addis-ababa/h2-addis-ababa-outdoor.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/ethiopia/addis-ababa/h3-addisabab-outdoor.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/ethiopia/addis-ababa/s-addis-ababa-outdoor.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'MUC', 'destinationTitle':'Munich', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/germany/munich/h1-munich.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-munich.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/germany/munich/h2-munich.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/germany/munich/h3-munich-city.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/germany/munich/s-munich.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'DUB', 'destinationTitle':'Dublin', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/campaigns/global/destinations-promo/h1-destination-dublin-ribbon-en-hn.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-dublin.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/ireland/dublin/h2-dublin.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/ireland/dublin/h3-dublin.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/ireland/dublin/s-dublin.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'AMS', 'destinationTitle':'Amsterdam', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/campaigns/global/always-on/netherlands/h1-amsterdam-amstel-river-hn.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-amsterdam.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/netherlands/h2-amsterdam-outdoor-primary.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/netherlands/amsterdam/h3-amsterdam-outdoor-primary.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/netherlands/amsterdam/s-amsterdam-city.jpg', 'cabinType':'economy','tripType':'null'}",
+      "{'destinationIata':'FRA', 'destinationTitle':'Frankfurt', 'horizontalImage':'/content/dam/images/renditions/horizontal-1/destinations/germany/frankfurt/h1-frankfurt-city.jpg', 'destinationDetailPageUrl':'https://www.qatarairways.com/en/destinations/flights-to-frankfurt.html', 'limitedOfferCode':'false', 'horizontalImage2':'/content/dam/images/renditions/horizontal-2/destinations/germany/frankfurt-/h2-frankfurt-city.jpg', 'horizontalImage3':'/content/dam/images/renditions/horizontal-3/destinations/germany/frankfurt/h3-frankfurt-city.jpg', 'squareImage':'/content/dam/images/renditions/square/destinations/germany/frankfurt/s-frankfurt-bridge.jpg', 'cabinType':'economy','tripType':'null'}"
+    ],
+    "DOH-teaserLen": 9
+  },
+  "pricingResponse": [
+    {
+      "origin": "DOH",
+      "currencyCode": "QAR",
+      "destinationFares": {
+        "CMB": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 1110,
+            "outboundDate": "2026-10-28",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=CMB&departing=2026-10-28&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 2550,
+            "outboundDate": "2026-10-13",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=CMB&departing=2026-10-13&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 2000,
+            "outboundDate": "2026-10-28",
+            "inboundDate": "2026-11-11",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=CMB&departing=2026-10-28&returning=2026-11-11&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 4310,
+            "outboundDate": "2026-10-13",
+            "inboundDate": "2026-10-20",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=CMB&departing=2026-10-13&returning=2026-10-20&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "AMD": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 1250,
+            "outboundDate": "2026-10-19",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=AMD&departing=2026-10-19&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 3050,
+            "outboundDate": "2026-10-27",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=AMD&departing=2026-10-27&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 1620,
+            "outboundDate": "2026-10-18",
+            "inboundDate": "2026-10-21",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=AMD&departing=2026-10-18&returning=2026-10-21&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 4970,
+            "outboundDate": "2026-10-27",
+            "inboundDate": "2026-11-11",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=AMD&departing=2026-10-27&returning=2026-11-11&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "CDG": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 1980,
+            "outboundDate": "2026-10-19",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=CDG&departing=2026-10-19&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 9390,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=CDG&departing=2026-10-06&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 3420,
+            "outboundDate": "2026-10-19",
+            "inboundDate": "2026-11-12",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=CDG&departing=2026-10-19&returning=2026-11-12&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 15200,
+            "outboundDate": "2026-10-06",
+            "inboundDate": "2026-10-10",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=CDG&departing=2026-10-06&returning=2026-10-10&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "MAN": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 2410,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=MAN&departing=2026-10-06&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 10500,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=MAN&departing=2026-10-06&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 4080,
+            "outboundDate": "2026-11-14",
+            "inboundDate": "2026-11-18",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=MAN&departing=2026-11-14&returning=2026-11-18&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 15780,
+            "outboundDate": "2026-10-17",
+            "inboundDate": "2026-11-01",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=MAN&departing=2026-10-17&returning=2026-11-01&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "ADD": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 950,
+            "outboundDate": "2026-10-21",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=ADD&departing=2026-10-21&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 3440,
+            "outboundDate": "2026-10-14",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=ADD&departing=2026-10-14&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 1730,
+            "outboundDate": "2026-10-21",
+            "inboundDate": "2026-10-27",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=ADD&departing=2026-10-21&returning=2026-10-27&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 5560,
+            "outboundDate": "2026-10-14",
+            "inboundDate": "2026-10-20",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=ADD&departing=2026-10-14&returning=2026-10-20&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "MUC": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 1870,
+            "outboundDate": "2026-11-11",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=MUC&departing=2026-11-11&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 10900,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=MUC&departing=2026-10-06&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 3330,
+            "outboundDate": "2026-11-11",
+            "inboundDate": "2026-11-14",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=MUC&departing=2026-11-11&returning=2026-11-14&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 17270,
+            "outboundDate": "2026-10-06",
+            "inboundDate": "2026-10-09",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=MUC&departing=2026-10-06&returning=2026-10-09&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "DUB": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 2530,
+            "outboundDate": "2026-10-13",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=DUB&departing=2026-10-13&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 9950,
+            "outboundDate": "2026-10-11",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=DUB&departing=2026-10-11&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 4050,
+            "outboundDate": "2026-10-20",
+            "inboundDate": "2026-11-15",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=DUB&departing=2026-10-20&returning=2026-11-15&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 15550,
+            "outboundDate": "2026-10-06",
+            "inboundDate": "2026-10-25",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=DUB&departing=2026-10-06&returning=2026-10-25&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "AMS": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 2400,
+            "outboundDate": "2026-11-04",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=AMS&departing=2026-11-04&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 11250,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=AMS&departing=2026-10-06&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 4230,
+            "outboundDate": "2026-11-04",
+            "inboundDate": "2026-11-07",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=AMS&departing=2026-11-04&returning=2026-11-07&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 17860,
+            "outboundDate": "2026-10-07",
+            "inboundDate": "2026-10-11",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=AMS&departing=2026-10-07&returning=2026-10-11&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ],
+        "FRA": [
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 2370,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=FRA&departing=2026-10-06&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 10900,
+            "outboundDate": "2026-10-06",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=O&fromStation=DOH&toStation=FRA&departing=2026-10-06&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "ONE_WAY"
+          },
+          {
+            "cabinClass": "ECONOMY",
+            "lowestFare": 3810,
+            "outboundDate": "2027-03-13",
+            "inboundDate": "2027-03-28",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=FRA&departing=2027-03-13&returning=2027-03-28&bookingClass=E&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          },
+          {
+            "cabinClass": "PREMIUM",
+            "lowestFare": 17340,
+            "outboundDate": "2026-10-06",
+            "inboundDate": "2026-10-09",
+            "deepLink": "https://www.qatarairways.com/app/booking/flight-selection?selLang=en&tripType=R&fromStation=DOH&toStation=FRA&departing=2026-10-06&returning=2026-10-09&bookingClass=B&adults=1&children=0&infants=0",
+            "tripType": "RETURN"
+          }
+        ]
+      }
+    }
+  ]
+}

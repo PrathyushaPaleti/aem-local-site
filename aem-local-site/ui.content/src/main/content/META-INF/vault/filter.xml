@@ -5,6 +5,7 @@
     <filter root="/content/dam/aem-local-site" mode="merge">
         <include pattern="/content/dam/aem-local-site/jcr:content(/.*)?"/>
         <include pattern="/content/dam/aem-local-site/product-assets(/.*)?"/>
+		<include pattern="/content/dam/aem-local-site/product-json(/.*)?"/>
     </filter>
     <filter root="/content/experience-fragments/aem-local-site" mode="merge"/>
 </workspaceFilter>
